@@ -46,14 +46,14 @@ People who fish recreationally also might not practice catch and release, which 
 ## Data Sets
 The 8 classes chosen for this project are:
 
-Blue spotted ribbontail ray (bluespotray)
-Honeycomb grouper
-Honeycomb ray
-Hybrid grouper
-Queenfish
-Red sea bream
-Seabass
-Shovelnose ray (shovelnose)
+* Blue spotted ribbontail ray (bluespotray)
+* Honeycomb grouper
+* Honeycomb ray
+* Hybrid grouper
+* Queenfish
+* Red sea bream
+* Seabass
+* Shovelnose ray (shovelnose)
 
 Aside from sea breams, seabasses and queenfishes, which are very common fish, shovelnose rays and honeycomb rays were chosen as they are endangered, and we want the algorithm to be able to ID these species to encourage release back into the wild.
 
