@@ -46,21 +46,27 @@ Our company ABC Travel has decided to build a one-stop information portal built 
 
 ## Model Summaries
 
-| Model | Vectorizer | Train Score | Test Score | ROC/AUC Score |
+| Model | Vectorizer | Train Score | Test Score | Misclassification Rate |
 | --- | --- | --- | --- | --- |
-| Logistic Regression | Count | 79.7% |  72.4%  |  72.4%  |  
-| Naive-Bayes | Count | 82.0% |  72.9%  |  72.9%  | 
-| Random Forest | Count | 81.2% |  73.7%  |  73.7%  |  
-| KNN | TFIDF | 71.4% |  71.2%  |  71.4%  | 
-| SVM | TFIDF | 99.8% |  75.2%  |  75.2%  |  
+| Logistic Regression | TFIDF | 82.8% |  72.2%  |   27.8% |  
+| Naive-Bayes | Count | 81.9% |  72.7%  |  27.3%  | 
+| Random Forest | TFIDF | 84.2% |  73.9%  |  26.1%  |  
+| KNN | TFIDF | 71.2% |  72.0%  |  28.0%  | 
+| SVM | Count | 89.7% |  72.7%  |  27.3%  |   
 
 --- 
 
 ## Model Analysis
 
-Although the SVM model has the highest ROC/AUC score, the train/test split was too drastic to ignore and hence we went with the Random Forest instead. The Random Forest model returned the best ROC/AUC score while having a train/test score that was not too large. We have chosen ROC-AUC to score our model, as the split between the 2 classes are pretty balanced, and misclassification would not have too much of a negative impact.
+ROC-AUC was chosen to score our model, as the split between the 2 classes are pretty balanced, and misclassification would not have too much of a negative impact.
 
-When looking at misclassified text, Twe see a mix of: 
+The SVM model severly overfits and will not be chosen to be our production model. 
+Logistic regression produced the best roc-auc score, however it is also severely overfit. 
+
+We have chosen to use a KNN as our production model, as it is the least overfit, and has a decent ROC-AUC score that does not differ too much from the other models. 
+
+
+When looking at misclassified text, we see a mix of: 
 * truly misclassified posts 
 * posts that could belong in both subreddits 
 * posts that were posted in the wrong subreddit
@@ -74,7 +80,7 @@ To summarize, in the first notebook we scraped data from 2 subreddits: r/solotra
 
 We first ran a gridsearch to find the best parameters for both CountVectorizer and TFIDFVectorizer, before remodelling with these parameters.
 
-The model that performed well with respect to our problem statement is: Random Forest with a CountVectorizer. It returned an accuracy score of 73.7% on our test data.
+The model that performed well with respect to our problem statement is: KNN with a TFIDFVectorizer. It returned an accuracy score of 72.0% on our test data.
 
 Although our accuracy scores for our model wasn't particularly high, we have still gained valuable insight.
 
